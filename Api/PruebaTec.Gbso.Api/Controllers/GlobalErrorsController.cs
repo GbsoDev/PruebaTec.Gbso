@@ -15,8 +15,8 @@ namespace PruebaTec.Gbso.Api
 		[HttpGet("/errors")]
 		public async Task<IActionResult> HandleErrors()
 		{
-			var contextException = HttpContext.Features.Get<ExceptionHandlerFeature>();
-			var exceptionType = contextException?.Error.GetType();
+			//var contextException = HttpContext.Features.Get<ExceptionHandlerFeature>();
+			//var exceptionType = contextException?.Error.GetType();
 			return Problem("Error interno - Consulte con el administrador ");
 		}
 	}

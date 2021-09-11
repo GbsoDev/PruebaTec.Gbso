@@ -21,9 +21,12 @@ namespace PruebaTec.Gbso.Dal
 			var usuarioEntity = modelBuilder.Entity<UsuarioModel>();
 			usuarioEntity.Property(p => p.Nombre).IsRequired();
 			usuarioEntity.Property(p => p.Apellido).IsRequired();
-			usuarioEntity.Property(p => p.TipoIdentificacion).IsRequired();
 			usuarioEntity.Property(p => p.CorreoElectronico).IsRequired();
-			usuarioEntity.Property(p => p.TipoIdentificacion).HasConversion<short>();
+			usuarioEntity.Property(p => p.TipoIdentificacionId).HasConversion<short>();
+			usuarioEntity
+				.HasOne(p => p.TipoIdentificacion)
+				.WithMany(n=> n.Usuarios)
+				.HasForeignKey(u=> u.TipoIdentificacionId);
 
 
 			var tipoIdentificacionEntity = modelBuilder.Entity<TipoIdentificacionModel>();
