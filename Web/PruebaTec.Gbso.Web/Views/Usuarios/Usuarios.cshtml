@@ -1,11 +1,5 @@
 ﻿@model IEnumerable<PruebaTec.Gbso.Web.Models.UsuarioModel>
 
-@{
-    ViewData["Title"] = "Usuarios";
-}
-
-<h1>Usuarios</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -55,9 +49,9 @@
                 @Html.DisplayFor(modelItem => item.CorreoElectronico)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", item) |
+                @Html.ActionLink("Details", "Details", item) |
+                @Html.ActionLink("Delete", "Delete", item)
             </td>
         </tr>
 }

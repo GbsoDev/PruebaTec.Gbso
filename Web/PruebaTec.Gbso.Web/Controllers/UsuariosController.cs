@@ -9,52 +9,53 @@ using System.Threading.Tasks;
 
 namespace PruebaTec.Gbso.Web.Controllers
 {
-	public class UsuarioController : Controller
+	public class UsuariosController : Controller
 	{
 		private readonly IUsuarioService UsuarioService;
 
-		public UsuarioController(IUsuarioService usuarioService)
+		public UsuariosController(IUsuarioService usuarioService)
 		{
 			this.UsuarioService = usuarioService;
 		}
 
-		public ActionResult Usuarios()
+		public async Task<ActionResult> Index()
 		{
-			return View();
+			var usuarios = await UsuarioService.ConsultarAsync();
+			return View(usuarios);
 		}
 
-		public async Task<ActionResult> Usuario(int id)
+		public async Task<PartialViewResult> Usuario(int id)
 		{
 			var usuario = await UsuarioService.ConsultarAsync(id);
-			return View(usuario);
+			return PartialView(usuario);
 		}
 
-		public async Task<ActionResult> Crear(UsuarioModel usuarioModel)
+		public async Task<PartialViewResult> Crear(UsuarioModel usuarioModel)
 		{
 			await UsuarioService.RegistrarAsync(usuarioModel);
-			return View();
+			return PartialView();
 		}
 
-		public async Task<ActionResult> Editar(int id)
+		public async Task<PartialViewResult> Editar(int id)
 		{
 			return await Usuario(id);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public Task<ActionResult> Editar(int id, IFormCollection collection)
+		public Task<PartialViewResult> Editar(int id, IFormCollection collection)
 		{
 			throw new NotImplementedException();
 		}
 
-		public Task<ActionResult> Eliminar(int id)
+		public Task<PartialViewResult> Eliminar(int id)
 		{
 			throw new NotImplementedException();
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public Task<ActionResult> Eliminar(int id, IFormCollection collection)
+		public Task<PartialViewResult> Eliminar(int id, IFormCollection collection)
 		{
 			throw new NotImplementedException();
 		}
